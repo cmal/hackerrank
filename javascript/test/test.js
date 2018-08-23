@@ -184,4 +184,66 @@ describe('utils', function() {
       Object.values(groups).toString().should.equal('2,4,1,3,5');
     })
   })
+
+  var selectionSort = require('../utils.js').selectionSort;
+  describe('#selectionSort()', function() {
+    it('selection sort should return correct answer', function() {
+      selectionSort([]).toString().should.equal('');
+      selectionSort([1]).toString().should.equal('1');
+      selectionSort([1,2]).toString().should.equal('1,2');
+      selectionSort([2,1,3]).toString().should.equal('1,2,3');
+    });
+  });
+
+  var QuickSort = require('../utils.js').QuickSort;
+  describe('#QuickSort()', function() {
+    it('QuickSort should return correct answer', function() {
+      var a = [];
+      QuickSort(a, 0, a.length);
+      a.toString().should.equal('');
+      a = [1];
+      QuickSort(a, 0, a.length);
+      a.toString().should.equal('1');
+      a = [1,2];
+      QuickSort(a, 0, a.length);
+      a.toString().should.equal('1,2');
+      a = [2,1,3];
+      QuickSort(a, 0, a.length);
+      a.toString().should.equal('1,2,3');
+      a = [6,2,1,3,9,8,7,4,5];
+      QuickSort(a, 0, a.length);
+      a.toString().should.equal('1,2,3,4,5,6,7,8,9');
+    });
+  });
+
+})
+
+
+describe('Lily\'s Homework', function() {
+  var lilysHomework = require('../ipk.sort.lilysHomework.js').lilysHomework;
+  describe('#lilysHomework()', function() {
+    it ('should return correct answer', function() {
+      lilysHomework([2,5,3,1]).should.equal(2);
+      lilysHomework([72,3,0,4,1,6,5,2]).should.equal(5);
+      lilysHomework([1,5,3,4]).should.equal(2);
+      lilysHomework([3,4,2,1,5]).should.equal(3);
+      lilysHomework([1,4,0,21,9]).should.equal(3);
+    })
+  })
+})
+
+describe('minimumSwaps2', function() {
+  var minimumSwaps = require('../challenges.minimumSwaps2.js').minimumSwaps;
+  describe('#minimumSwaps()', function() {
+    it ('should return correct answer', function() {
+      minimumSwaps([2,5,3,1]).should.equal(2);
+      minimumSwaps([72,3,0,4,1,6,5,2]).should.equal(5);
+      minimumSwaps([1,5,3,4]).should.equal(2);
+      minimumSwaps([3,4,2,1,5]).should.equal(3);
+      minimumSwaps([1,4,0,21,9]).should.equal(3);
+      minimumSwaps([4,3,1,2]).should.equal(3);
+      minimumSwaps([2,3,4,1,5]).should.equal(3);
+      minimumSwaps([1,3,5,2,4,6,8]).should.equal(3);
+    })
+  })
 })

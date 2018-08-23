@@ -1,3 +1,5 @@
+// timeout:
+
 // function countBefore(pre, ppre, limit) {
 //   if (!pre || !ppre) return 0;
 //   var count = 0;
@@ -55,7 +57,7 @@ function countTriplets(arr, r) {
     // console.log(freqs, second, count)
     var k = arr[i];
     if (!(k % r)) {
-      kr = k / r;
+      var kr = k / r;
       if (second[kr]) {
         count += second[kr];
       }

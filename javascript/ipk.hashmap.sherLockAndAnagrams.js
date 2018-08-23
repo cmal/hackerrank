@@ -17,7 +17,6 @@ function sherLockAndAnagrams(s) {
     var a = s.split('');
     var b = partition(i, 1, a);
     var c = groupBy(sort, b);
-    // console.log(c);
     var d = Object.values(c);
     var e = d
         .map(function(item) { return item.length; })
