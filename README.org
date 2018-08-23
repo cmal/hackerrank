@@ -17,4 +17,4 @@ ipk
 |---------------------------+---------------+-----------------------+--------+------------+---------|
 | Dictionaries and Hashmaps | DataStructure | Sherlock and Anagrams |        |            |       1 |
 |---------------------------+---------------+-----------------------+--------+------------+---------|
-| Dictionaries and Hashmaps | DataStructure | Count Triplets        |        |            |         |
+| Dictionaries and Hashmaps | DataStructure | Count Triplets        |      1 |          1 |       1 |

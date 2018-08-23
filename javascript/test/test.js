@@ -65,14 +65,14 @@ describe('two strings', function() {
 //   })
 // });
 
-// describe('sherlock and anagrams', function() {
-//   var sherLockAndAnagrams = require('../ipk.hashmap.sherLockAndAnagrams.js').sherLockAndAnagrams;
-//   describe('#sherLockAndAnagrams()', function() {
-//     it ('should return correct answer', function() {
-//       sherLockAndAnagrams('kkkk').should.equal(10);
-//     })
-//   })
-// })
+describe('sherlock and anagrams', function() {
+  var sherLockAndAnagrams = require('../ipk.hashmap.sherLockAndAnagrams.js').sherLockAndAnagrams;
+  describe('#sherLockAndAnagrams()', function() {
+    it ('should return correct answer', function() {
+      sherLockAndAnagrams('kkkk').should.equal(10);
+    })
+  })
+})
 
 describe('frequency queries', function() {
   var freqQuery = require('../ipk.hashmap.frequencyQueries.js').freqQuery;
@@ -97,16 +97,16 @@ describe('count triplets', function() {
   var countTriplets = require('../ipk.hashmap.countTriplets.js').countTriplets;
   describe('#countTriplets()', function() {
     it ('should return correct answer', function() {
-      // countTriplets([1,1,1],1).should.equal(1);
-      // countTriplets([1,1,1,1],1).should.equal(4);
-      // countTriplets([1,4,16,64],4).should.equal(2);
-      // countTriplets([1,2,2,4],2).should.equal(2);
-      // countTriplets([1,3,9,9,27,81],3).should.equal(6);
-      // countTriplets([1,5,5,25,125],5).should.equal(4);
+      countTriplets([1,1,1],1).should.equal(1);
+      countTriplets([1,1,1,1],1).should.equal(4);
+      countTriplets([1,4,16,64],4).should.equal(2);
+      countTriplets([1,2,2,4],2).should.equal(2);
+      countTriplets([1,3,9,9,27,81],3).should.equal(6);
+      countTriplets([1,5,5,25,125],5).should.equal(4);
       countTriplets([1,2,1,2,4],2).should.equal(3);
-      // countTriplets([5,5,5,7,7,5,5,7,7,7],1).should.equal(20);
-      // countTriplets([9,9,9,9,9],1).should.equal(10);
-      // countTriplets([4,4,4,4,4,4,4,4,4,4],1).should.equal(120);
+      countTriplets([5,5,5,7,7,5,5,7,7,7],1).should.equal(20);
+      countTriplets([9,9,9,9,9],1).should.equal(10);
+      countTriplets([4,4,4,4,4,4,4,4,4,4],1).should.equal(120);
     })
   })
 })
@@ -119,6 +119,69 @@ describe('Bubble Sort', function() {
       countSwaps([1,2,3]).toString().should.equal('0,1,3');
       countSwaps([3,2,1]).toString().should.equal('3,1,3');
       countSwaps([4,2,3,1]).toString().should.equal('5,1,4');
+    })
+  })
+})
+
+describe('utils', function() {
+  var insertionSort = require('../utils.js').insertionSort;
+  describe('#insertionSort()', function() {
+    it('insertion sort should return correct answer', function() {
+      insertionSort([]).toString().should.equal('');
+      insertionSort([1]).toString().should.equal('1');
+      insertionSort([1,2]).toString().should.equal('1,2');
+      insertionSort([2,1,3]).toString().should.equal('1,2,3');
+    });
+  });
+  var quickSort = require('../utils.js').quickSort;
+  describe('#quickSort()', function() {
+    it('quicksort should return correct answer', function() {
+      var a;
+      a = [];
+      quickSort(a);
+      a.toString().should.equal('');
+      a = [1];
+      quickSort(a);
+      a.toString().should.equal('1');
+      a = [1,2];
+      quickSort(a);
+      a.toString().should.equal('1,2');
+      a = [2,1,3];
+      quickSort(a);
+      a.toString().should.equal('1,2,3');
+      a = [6,2,1,3,9,8,7,4,5];
+      quickSort(a);
+      a.toString().should.equal('1,2,3,4,5,6,7,8,9');
+    })
+  })
+
+  var take = require('../utils.js').take;
+  describe('#take()', function() {
+    it('take should return correct answer', function() {
+      var arr = [1,2,3,4,5];
+      take(arr, 2, 0).toString().should.equal('1,2')
+      take(arr, 2, 1).toString().should.equal('2,3');
+      take(arr, 2, 4).toString().should.equal('5');
+      take(arr, 2, 5).toString().should.equal('');
+    })
+  });
+  
+  var partition = require('../utils.js').partition;
+  describe('#partition()', function() {
+    it ('parition should return correct answer', function() {
+      var arr = [1,2,3,4,5];
+      partition(2, 1, arr).toString().should.equal('1,2,2,3,3,4,4,5');
+      partition(2, 1, arr).length.should.equal(4);
+    }) 
+  })
+  var groupBy = require('../utils.js').groupBy;
+  describe('#groupBy()', function() {
+    it ('groupBy should return correct answer', function() {
+      var arr = [1,2,3,4,5];
+      var f = x => x % 2;
+      var groups = groupBy(f, arr);
+      Object.keys(groups).toString().should.equal('0,1');
+      Object.values(groups).toString().should.equal('2,4,1,3,5');
     })
   })
 })

@@ -36,7 +36,7 @@
   (is (= 6 (countTriplets [1 3 9 9 27 81] 3)))
   (is (= 4 (countTriplets [1 5 5 25 125] 5)))
   (is (= 3 (countTriplets [1 2 1 2 4] 2)))
-  (is (= 20 (countTriplets [5,5,5,7,7,5,5,7,7,7] 1)))
-  (is (= 10 (countTriplets [9,9,9,9,9] 1)))
-  (is (= 120 (countTriplets [4,4,4,4,4,4,4,4,4,4] 1))))
+  (is (= 20 (countTriplets [5 5 5 7 7 5 5 7 7 7] 1)))
+  (is (= 10 (countTriplets [9 9 9 9 9] 1)))
+  (is (= 120 (countTriplets [4 4 4 4 4 4 4 4 4 4] 1))))
 
