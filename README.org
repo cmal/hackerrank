@@ -1,0 +1,20 @@
+* Hackerrank
+
+
+** Interview Preparation Kit
+
+ipk
+
+| Group                     | Category      | Problem               | Python | JavaScript | Clojure |
+|---------------------------+---------------+-----------------------+--------+------------+---------|
+| Arrays                    | DataStructure | 2D Array              |        |            |       1 |
+|---------------------------+---------------+-----------------------+--------+------------+---------|
+| Dictionaries and Hashmaps | DataStructure | Ransom Note           |        |          1 |       1 |
+|---------------------------+---------------+-----------------------+--------+------------+---------|
+| Sorting                   | Algorithms    | Count Inversions      |      1 |          1 |       1 |
+|---------------------------+---------------+-----------------------+--------+------------+---------|
+| Dictionaries and Hashmaps | DataStructure | Two Strings           |      1 |          1 |       1 |
+|---------------------------+---------------+-----------------------+--------+------------+---------|
+| Dictionaries and Hashmaps | DataStructure | Sherlock and Anagrams |        |            |       1 |
+|---------------------------+---------------+-----------------------+--------+------------+---------|
+| Dictionaries and Hashmaps | DataStructure | Count Triplets        |        |            |         |
