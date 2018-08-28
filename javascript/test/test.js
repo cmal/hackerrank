@@ -228,6 +228,8 @@ describe('Lily\'s Homework', function() {
       lilysHomework([1,5,3,4]).should.equal(2);
       lilysHomework([3,4,2,1,5]).should.equal(3);
       lilysHomework([1,4,0,21,9]).should.equal(3);
+      lilysHomework([4,3,2,1]).should.equal(0);
+      lilysHomework([7,15,1,4,10]).should.equal(3);
     })
   })
 })
@@ -244,6 +246,38 @@ describe('minimumSwaps2', function() {
       minimumSwaps([4,3,1,2]).should.equal(3);
       minimumSwaps([2,3,4,1,5]).should.equal(3);
       minimumSwaps([1,3,5,2,4,6,8]).should.equal(3);
+    })
+  })
+})
+
+
+describe ('isBalanced', function() {
+  var isBalanced = require('../practice.ds.stack.balanceParentheses.js').isBalanced;
+  describe('#isBalanced()', function() {
+    it ('should return correct answer', function() {
+      isBalanced('{[()]}').should.equal('YES');
+      isBalanced('{[(])}').should.equal('NO');
+      isBalanced('{{[[(())]]}}').should.equal('YES');
+      isBalanced('{{[[(())]]}').should.equal('NO');
+    })
+  })
+}) 
+
+describe('equalStacks', function() {
+  var equalStacks = require('../practice.ds.stack.equalStacks.js').equalStacks;
+  describe('#equalStacks()', function() {
+    it ('should return correct values', function() {
+      equalStacks([3,2,1,1,1],[4,3,2],[1,1,4,1]).should.equal(5);
+    }) 
+  })
+})
+
+describe('twoStacks', function() {
+  var twoStacks = require('../practice.ds.stack.gameOfTwoStacks.js').twoStacks;
+  describe('#twoStacks()', function() {
+    it ('should return correct values', function() {
+      twoStacks([4,2,4,6,1],[2,1,8,5],10).should.equal(4);
+      twoStacks([17,1,1,1,2], [8,8,6,4], 20).should.equal(4);
     })
   })
 })

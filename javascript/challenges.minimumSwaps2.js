@@ -1,71 +1,31 @@
 function minimumSwaps(arr) {
-  var swaps = 0;
   var comparefn = (a, b) => a - b;
-  selectionSort(arr);
-  return swaps
-  // return leastSwapsQuickSort(arr);
-  
-  function selectionSort(arr) {
-    for (var i = 0; i < arr.length; i ++) {
-      var minIndex = i;
-      for (var j = i; j < arr.length; j ++) {
-        if (comparefn(arr[j], arr[minIndex]) < 0) {
-          minIndex = j;
-        }
-      }
-      if (minIndex != i) {
-        selectionSwap(arr, minIndex, i);
-      }
-    }
-    return arr;
+  var sorted = arr.slice().sort(comparefn);
+  var counter = 0;
+  var len = arr.length;
+
+  var pos = {};
+  // record value positions, for later usage
+  for (var i = 0; i < arr.length; i ++) {
+    pos[arr[i]] = i;
   }
 
-  function selectionSwap(arr, i, j) {
-    var tmp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = tmp;
-    swaps ++;
+  var visited = [];
+
+  for (var i = 0; i < len; i ++) {
+    if (visited[i] || arr[i] == sorted[i]) continue;
+    var j = i;
+    var cycleSize = 0;
+    while(!visited[j]) {
+      visited[j] = true;
+      j = pos[sorted[pos[arr[j]]]];
+      cycleSize ++;
+    }
+    counter += cycleSize - 1;
   }
+
+  return counter;
 
 }
 
 exports.minimumSwaps = minimumSwaps;
-
-
-function leastSwapsQuickSort(arr) {
-  // this is not right
-  var swaps = 0;
-  quickSortRecur(arr, 0, arr.length - 1);
-
-  function swap(arr, i, j) {
-    if (i == j || arr[i] == arr[j]) return;
-    var tmp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = tmp;
-    swaps ++;
-  }
-
-  function sortPartition(arr, p, r) {
-    // swap every small element to first part
-    var pivot = arr[r];
-    var i = p - 1;
-    for (var j = p; j < r; j ++) {
-      if (arr[j] <= pivot) {
-        i ++;
-        swap(arr, i, j);
-      }
-    }
-    i ++;
-    swap(arr, i, r);
-    return i;
-  }
-
-  function quickSortRecur(arr, p, r) {
-    if (p < r) {
-      var q = sortPartition(arr, p, r);
-      quickSortRecur(arr, p, q - 1);
-      quickSortRecur(arr, q + 1, r);
-    }
-  }
-  return swaps;
-}

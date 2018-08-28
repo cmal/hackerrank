@@ -1,51 +1,43 @@
 function lilysHomework(arr) {
-  var swaps = 0;
-  var minCompareFn = (a, b) => a - b;
-  var maxCompareFn = (a, b) => b - a;
-  var sorted = arr.slice().sort(minCompareFn);
+  var comparefn = (a, b) => a - b;
+  var sorted = arr.slice().sort(comparefn);
   var counterMin = 0;
   var counterMax = 0;
-  var tMin = [];
-  var tMax = [];
+  var len = arr.length;
+
+  var pos = {};
+  // record value positions, for later usage
   for (var i = 0; i < arr.length; i ++) {
-    if (sorted[i] != arr[i]) {
-      counterMin ++;
-      tMin[i] = true;
-    }
-    if (sorted[arr.length - 1 - i] != arr[i]) {
-      counterMax ++;
-      tMax[i] = true;
-    }
-  }
-  var comparefn = counterMin < counterMax ? minCompareFn : maxCompareFn;
-  var t = counterMin < counterMax ? tMin : tMax;
-  selectionSort(arr.filter(function(item, index) {
-    return t[index];
-  }));
-  return swaps;
-
-  function selectionSort(arr) {
-    for (var i = 0; i < arr.length; i ++) {
-      var minIndex = i;
-      for (var j = i; j < arr.length; j ++) {
-        if (comparefn(arr[j], arr[minIndex]) < 0) {
-          minIndex = j;
-        }
-      }
-      if (minIndex != i) {
-        selectionSwap(arr, minIndex, i);
-      }
-    }
-    return arr;
+    pos[arr[i]] = i;
   }
 
-  function selectionSwap(arr, i, j) {
-    var tmp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = tmp;
-    swaps ++;
+  var visitedMin = [];
+  var visitedMax = [];
+
+  for (var i = 0; i < len; i ++) {
+    if (visitedMin[i] || arr[i] == sorted[i]) continue;
+    var j = i;
+    var cycleSize = 0;
+    while(!visitedMin[j]) {
+      visitedMin[j] = true;
+      j = pos[sorted[pos[arr[j]]]];
+      cycleSize ++;
+    }
+    counterMin += cycleSize - 1;
   }
 
+  for (var i = 0; i < len; i ++) {
+    if (visitedMax[i] || arr[i] == sorted[len - 1 - i]) continue;
+    var j = i;
+    var cycleSize = 0;
+    while(!visitedMax[j]) {
+      visitedMax[j] = true;
+      j = pos[sorted[len - 1 - pos[arr[j]]]];
+      cycleSize ++;
+    }
+    counterMax += cycleSize - 1;
+  }
+  return Math.min(counterMin, counterMax);
 }
 
 exports.lilysHomework = lilysHomework;
