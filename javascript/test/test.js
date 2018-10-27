@@ -1,5 +1,6 @@
 var assert = require('assert');
 var should = require('chai').should()
+var fs = require('fs');
 
 describe('counting inversions', function() {
   var countInversions = require('../ipk.sort.countInversions.js').countInversions;
@@ -52,7 +53,7 @@ describe('two strings', function() {
       twoStrings('hello', 'world').should.equal('YES');
       twoStrings('hi', 'world').should.equal('NO');
     })
-  }) 
+  })
 })
 
 // describe('', function() {
@@ -89,7 +90,7 @@ describe('frequency queries', function() {
 
       freqQuery([[1,3],[2,3],[3,2],[1,4],[1,5],[1,5],[1,4],[3,2],[2,4],[3,2]])
         .toString().should.equal('0,1,1');
-    }) 
+    })
   })
 })
 
@@ -165,14 +166,14 @@ describe('utils', function() {
       take(arr, 2, 5).toString().should.equal('');
     })
   });
-  
+
   var partition = require('../utils.js').partition;
   describe('#partition()', function() {
     it ('parition should return correct answer', function() {
       var arr = [1,2,3,4,5];
       partition(2, 1, arr).toString().should.equal('1,2,2,3,3,4,4,5');
       partition(2, 1, arr).length.should.equal(4);
-    }) 
+    })
   })
   var groupBy = require('../utils.js').groupBy;
   describe('#groupBy()', function() {
@@ -261,14 +262,14 @@ describe ('isBalanced', function() {
       isBalanced('{{[[(())]]}').should.equal('NO');
     })
   })
-}) 
+})
 
 describe('equalStacks', function() {
   var equalStacks = require('../practice.ds.stack.equalStacks.js').equalStacks;
   describe('#equalStacks()', function() {
     it ('should return correct values', function() {
       equalStacks([3,2,1,1,1],[4,3,2],[1,1,4,1]).should.equal(5);
-    }) 
+    })
   })
 })
 
@@ -278,6 +279,158 @@ describe('twoStacks', function() {
     it ('should return correct values', function() {
       twoStacks([4,2,4,6,1],[2,1,8,5],10).should.equal(4);
       twoStacks([17,1,1,1,2], [8,8,6,4], 20).should.equal(4);
+    })
+  })
+})
+
+
+describe('migrationBirds', function() {
+  var migrationBirds = require('../practice.algo.impl.migrationBirds.js').migrationBirds;
+  describe('#migrationBirds()', function() {
+    it ('should return correct values', function() {
+      migrationBirds([1,4,4,4,5,3]).should.equal(4);
+      migrationBirds([1,2,3,4,5,4,3,2,1,3,4]).should.equal(3);
+      migrationBirds([1,3,2,1,3,2,3,2]).should.equal(2);
+    })
+  })
+})
+
+
+describe('getMoneySpent', function() {
+  var getMoneySpent = require('../practice.algo.impl.electronicShops.js').getMoneySpent;
+  describe('#getMoneySpent()', function() {
+    it ('should return correct values', function() {
+      getMoneySpent([3,1], [5,2,8], 10).should.equal(9);
+      getMoneySpent([4], [5], 5).should.equal(-1);
+      getMoneySpent([3,1], [5,2,8], 4).should.equal(3);
+      getMoneySpent([40,60,62,48], [51,50,70,35], 100).should.equal(99);
+      getMoneySpent([2,4,6,8,10], [1,2,4,6,8,10], 9).should.equal(9);
+      getMoneySpent([2,4,6,8], [1,2,4,6,8], 10).should.equal(10);
+    })
+  })
+})
+
+describe('queensAttack', function() {
+  var queensAttack = require('../practice.algo.impl.QueensAttackII.js').queensAttack;
+  describe('#queensAttack()', function() {
+    it ('should return correct values', function() {
+    queensAttack(4, 0, 4, 4, []).should.equal(9);
+    queensAttack(5, 3, 4, 3, [[5,5], [4,2], [2,3]]).should.equal(10);
+    queensAttack(8, 8, 4, 4, [[5,3], [5,4], [5,5], [4,3], [4,5], [3,3], [3,4], [3,5]]).should.equal(0);
+    })
+  })
+})
+
+// describe('formingMagicSquare', function() {
+//   var formingMagicSquare = require('../practice.algo.impl.formingAMagicSquare.js').formingMagicSquare;
+//   describe('#formingAMagicSquare()', function() {
+//     it ('should return correct values', function() {
+//       formingMagicSquare([[4,9,2],[3,5,7],[8,1,5]]).should.equal(1);
+//       formingMagicSquare([[4,8,2],[4,5,7],[6,1,6]]).should.equal(4);
+//       formingMagicSquare([[1,2,3],[2,3,5],[6,7,8]]).should.equal(8);
+//       formingMagicSquare([[2,9,8],[4,2,7],[5,6,7]]).should.equal();
+//     })
+//   })
+// })
+
+describe('climbingTheLeaderboard', function() {
+  var climbingTheLeaderboard = require('../practice.algo.impl.climbingTheLeaderboard.js').climbingTheLeaderboard;
+  describe('#climbingTheLeaderboard()', function() {
+    it ('should return correct values', function() {
+      climbingTheLeaderboard([100,100,50,40,40,20,10], [5,25,50,100]).toString().should.equal('6,4,2,1');
+      climbingTheLeaderboard([100,90,90,80,75,60],[50,65,77,90,102]).toString().should.equal('6,5,4,2,1');
+    })
+  })
+})
+
+describe('organizingContainers', function() {
+  var organizingContainers = require('../practice.algo.impl.organizingContainersOfBalls.js').organizingContainers;
+  describe('#organizingContainers()', function() {
+    it ('should return correct values', function() {
+      organizingContainers([[1,1],[1,1]]).should.equal('Possible');
+      organizingContainers([[0,2],[1,1]]).should.equal('Impossible');
+      organizingContainers([[1,4],[2,3]]).should.equal('Impossible');
+      organizingContainers([[999336263,998799923],[998799923,999763019]]).should.equal('Possible');
+      organizingContainers([[997612619,934920795,998879231,999926463],
+                            [960369681,997828120,999792735,979622676],
+                            [999013654,998634077,997988323,958769423],
+                            [997409523,999301350,940952923,993020546]]).should.equal('Possible');
+    })
+  })
+})
+
+describe('flatlandSpaceStations', function() {
+  var flatlandSpaceStations = require('../practice.algo.impl.flatlandSpaceStations.js').flatlandSpaceStations;
+  describe('#flatlandSpaceStations()', function() {
+    it ('should return correct values', function() {
+      var n = 99999;
+      var c = fs.readFileSync('./flatlandSpaceStations.txt')
+          .toString().split(' ')
+          .map(cTemp => parseInt(cTemp, 10));
+      flatlandSpaceStations(n, c).should.equal(305);
+    })
+  })
+})
+
+
+
+describe('QHEAP1', function() {
+  var processData = require('../practice.ds.heap.processData.js').processData;
+  var heapify = require('../practice.ds.heap.processData.js').heapify;
+  var data = fs.readFileSync('./hsortData.txt').toString();
+  var result = fs.readFileSync('./hsortRes.txt')
+      .toString().trim().split('\n')
+      .map(a => parseInt(a, 10));
+
+  describe('#heapify()', function() {
+    it ('should build min heap', function() {
+      var arr = [1,2];
+      heapify(arr, 2, 0);
+      arr.toString().should.equal([1,2].toString());
+      arr = [2,1];
+      heapify(arr, 2, 0);
+      arr.toString().should.equal([1,2].toString());
+      arr = [-2,1];
+      heapify(arr, 2, 0);
+      arr.toString().should.equal([-2,1].toString());
+      arr = [1,-2];
+      heapify(arr, 2, 0);
+      arr.toString().should.equal([-2,1].toString());
+    })
+  })
+  
+  describe('heap operations', function() {
+    it ('should return correct result', function() {
+      processData(data).toString().should.equal(result.toString());
+    })
+  })
+  
+})
+
+describe('Dynamic Programming -- Sherlock and Cost', function() {
+  var cost = require('../practice.algo.dp.sherlockAndCost.js').cost;
+  describe('#cost()', function() {
+    it ('cost should return correct result', function() {
+      cost([1, 2, 3]).should.equal(2);
+      cost([1, 2, 3, 2, 1]).should.equal(4);
+      cost([10, 1, 10, 1, 10]).should.equal(36);
+      cost([2, 7, 8, 7]).should.equal(18);
+      cost([4, 6]).should.equal(5);
+      cost([1]).should.equal(0);
+      cost([100, 2, 100, 2, 100]).should.equal(396);
+      cost([3, 15, 4, 12, 10]).should.equal(50);
+      cost([4, 7, 9]).should.equal(12);
+    });
+  });
+});
+
+
+describe('Dynamic Programming -- Count the Array', function() {
+  var countArray = require('../practice.algo.dp.constructTheArray.js').countArray;
+  describe('#countArray()', function() {
+    it ('count the array should return correct result', function() {
+      countArray(4, 3, 2).should.equal(3);
+      countArray(3, 3, 2).should.equal(1);
     })
   })
 })
